@@ -1,0 +1,35 @@
+# Core Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Web Scraping (optional)
+requests==2.31.0
+beautifulsoup4==4.12.2
+
+# Fake Data Generation (optional)
+faker==20.1.0
+
+# For Backend API (install separately)
+fastapi==0.109.0
+uvicorn==0.27.0
+python-dotenv==1.0.0
+
+# For LLM Integration (install separately based on choice)
+# Option 1: Ollama (local, free)
+# ollama (install via: curl -fsSL https://ollama.com/install.sh | sh)
+
+# Option 2: Groq API (free tier, fast)
+groq==0.4.2
+
+# Option 3: Hugging Face (free)
+transformers==4.36.2
+torch==2.1.2
+
+# For RAG (optional, advanced)
+sentence-transformers==2.3.1
+chromadb==0.4.22
+
+# For Analytics
+scikit-learn==1.4.0
+matplotlib==3.8.2
+seaborn==0.13.1

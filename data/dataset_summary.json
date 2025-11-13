@@ -1,0 +1,53 @@
+{
+  "generated_date": "2025-11-12 11:58:31",
+  "total_customers": 3000,
+  "total_interactions": 10000,
+  "total_campaigns": 30,
+  "total_products": 30,
+  "date_range": {
+    "start": "2025-08-14",
+    "end": "2025-11-12"
+  },
+  "category_distribution": {
+    "network_quality": 2003,
+    "billing_overcharge": 1802,
+    "internet_connectivity": 1444,
+    "internet_speed": 1299,
+    "billing_downgrade": 1261,
+    "account_issues": 885,
+    "product_inquiry": 444,
+    "tv_channels": 370,
+    "customer_retention": 268,
+    "tv_technical": 224
+  },
+  "sentiment_distribution": {
+    "neutral": 6672,
+    "negative": 1870,
+    "very_negative": 1018,
+    "positive": 440
+  },
+  "churn_risk_distribution": {
+    "medium": 4290,
+    "low": 3769,
+    "high": 1441,
+    "critical": 500
+  },
+  "operator_distribution": {
+    "BSNL": 777,
+    "Airtel": 767,
+    "Jio": 731,
+    "Vi": 725
+  },
+  "geography_distribution": {
+    "Nagpur": 164,
+    "Surat": 163,
+    "Pune": 161,
+    "Ludhiana": 160,
+    "Ahmedabad": 160,
+    "Chennai": 159,
+    "Lucknow": 158,
+    "Kochi": 154,
+    "Nashik": 153,
+    "Hyderabad": 150
+  }
+}

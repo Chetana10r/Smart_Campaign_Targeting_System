@@ -1,0 +1,31 @@
+product_id,product_name,product_category,product_type,price,description,target_issues,suitable_for_churn,stock_status,popularity_score,avg_rating
+PROD_001,50Mbps Basic Fiber,Internet Plans,Hardware,699,"Fiber broadband with 50Mbps speed, unlimited data","internet_speed,internet_connectivity",True,In Stock,91,4.7
+PROD_002,100Mbps Standard Fiber,Internet Plans,Hardware,999,"Fiber broadband with 100Mbps speed, unlimited data","internet_speed,internet_connectivity",False,Out of Stock,34,4.8
+PROD_003,200Mbps Premium Fiber,Internet Plans,Hardware,1499,"High-speed fiber with 200Mbps, OTT subscription included","internet_speed,internet_connectivity",True,Low Stock,50,3.6
+PROD_004,300Mbps Ultra Fiber,Internet Plans,Hardware,2499,Ultra-fast fiber broadband with 300Mbps symmetrical speed,"internet_speed,internet_connectivity",False,In Stock,37,4.5
+PROD_005,500Mbps Gig Fiber,Internet Plans,Hardware,3999,Gigabit-ready fiber with 500Mbps and priority support,"internet_speed,internet_connectivity",True,In Stock,2,4.3
+PROD_006,Prepaid 1.5GB/Day,Internet Plans,Hardware,299,"84 days validity, 1.5GB data per day, unlimited calls",product_inquiry,False,In Stock,51,4.7
+PROD_007,Prepaid 2GB/Day,Internet Plans,Hardware,399,"84 days validity, 2GB data per day, unlimited calls",product_inquiry,False,In Stock,63,3.7
+PROD_008,Postpaid Unlimited,Internet Plans,Hardware,599,"Unlimited calls, 50GB data, OTT subscription",product_inquiry,True,Low Stock,81,4.4
+PROD_009,WiFi 6 Router,Hardware,Hardware,2999,"Dual-band WiFi 6 router with 4 antennas, covers 2000 sq ft","internet_connectivity,network_quality",False,In Stock,81,4.1
+PROD_010,WiFi Range Extender,Hardware,Hardware,1499,Extends WiFi coverage up to 1500 sq ft,"internet_connectivity,network_quality",False,Out of Stock,48,4.7
+PROD_011,Mesh WiFi System (2-pack),Hardware,Hardware,8999,Whole home mesh WiFi covering 4000 sq ft,"internet_connectivity,network_quality",False,In Stock,79,4.5
+PROD_012,ONT Fiber Device,Hardware,Hardware,1999,Optical Network Terminal for fiber connection,product_inquiry,False,In Stock,84,4.9
+PROD_013,4G WiFi Dongle,Hardware,Hardware,999,"Portable 4G WiFi hotspot, works with all networks","internet_connectivity,network_quality",True,Low Stock,20,3.9
+PROD_014,WiFi Booster,Hardware,Hardware,1299,Signal booster for better indoor coverage,"internet_connectivity,network_quality",False,Low Stock,100,4.6
+PROD_015,Basic DTH Pack,TV Services,Service,299,"150+ SD channels, all free-to-air channels","tv_channels,tv_technical",True,Low Stock,31,4.0
+PROD_016,Premium DTH Pack,TV Services,Service,599,"250+ channels including HD, regional packs","tv_channels,tv_technical",False,In Stock,76,4.3
+PROD_017,Sports Pack,TV Services,Service,399,"All sports channels including Star Sports, Sony Ten",product_inquiry,False,Low Stock,34,3.5
+PROD_018,Movies Pack,TV Services,Service,299,"Premium movie channels including HBO, Sony Pix",product_inquiry,True,In Stock,10,4.6
+PROD_019,Regional Language Pack,TV Services,Service,199,Regional channels - Tamil/Telugu/Bengali/Marathi,product_inquiry,False,In Stock,61,4.9
+PROD_020,HD Set-Top Box,TV Services,Hardware,1500,HD quality set-top box with recording feature,product_inquiry,False,In Stock,15,4.7
+PROD_021,International Roaming - USA,Value Added Services,Hardware,2999,"30 days validity, 10GB data, unlimited calls",product_inquiry,True,In Stock,38,4.3
+PROD_022,International Roaming - Europe,Value Added Services,Hardware,3499,"30 days validity, 15GB data, unlimited calls",product_inquiry,True,In Stock,9,4.5
+PROD_023,Caller Tune Service,Value Added Services,Hardware,49,Monthly subscription for caller tunes,product_inquiry,False,Low Stock,83,4.3
+PROD_024,OTT Bundle - Netflix,Value Added Services,Hardware,199,Netflix Basic bundled with your plan,"customer_retention,product_inquiry",True,In Stock,69,4.0
+PROD_025,OTT Bundle - Amazon Prime,Value Added Services,Hardware,149,Amazon Prime Video subscription,"customer_retention,product_inquiry",False,Low Stock,67,3.8
+PROD_026,Cloud Storage 100GB,Value Added Services,Hardware,99,100GB cloud storage for photos and files,product_inquiry,True,In Stock,58,4.2
+PROD_027,Speed Upgrade to 200Mbps,Upgrades,Hardware,500,One-time upgrade fee to 200Mbps plan,"internet_speed,internet_connectivity",True,Low Stock,98,4.9
+PROD_028,Speed Upgrade to 300Mbps,Upgrades,Hardware,1000,One-time upgrade fee to 300Mbps plan,"internet_speed,internet_connectivity",True,In Stock,2,4.5
+PROD_029,Add TV to Internet,Upgrades,Hardware,299,Bundle TV service with existing internet,"tv_channels,tv_technical",True,In Stock,49,3.6
+PROD_030,Add Phone Line,Upgrades,Hardware,199,Add landline phone service to bundle,product_inquiry,False,Low Stock,5,4.3
