@@ -1,223 +1,220 @@
-🔴 TelecomAI – Vodafone Smart Campaign Targeting Platform
+# Smart_Campaign_Targetting_System
 
-AI-Powered Customer Intelligence | Churn Prediction | Lead Targeting | Llama-Powered Analytics
+AI-powered Telecom Customer Intelligence Dashboard built for analyzing customer issues, churn risk, campaign performance, and insights using FastAPI, React, and the Llama3.2:1b LLM.
 
-🚀 Overview
+---
 
-TelecomAI is a fully AI-powered customer intelligence platform designed for telecom operations.
-It helps Vodafone (VOIS) teams identify high-risk customers, optimize campaigns, analyze complaints, and generate insights automatically using Ollama LLM (llama3.2:1b).
+## Overview
 
-This project contains:
+Smart_Campaign_Targetting_System is an end-to-end telecom analytics platform designed to help identify customer churn, analyze complaints, generate targeted campaigns, and run natural-language queries using a lightweight local LLM.
 
-FastAPI Backend
+The system includes:
 
-Ollama LLM Engine (llama3.2:1b)
+- FastAPI Backend
+- Ollama Llama3.2:1b Local LLM
+- React Frontend (Vodafone Red Theme + Dark Mode)
+- Recharts Visual Dashboards
+- CSV-based telecom datasets (inside the data folder)
 
-React Frontend with Vodafone Red Theme + Dark Mode
+---
 
-Recharts Data Visualizations
+## Project Structure
 
-📁 Project Structure
-project/
+
+
+Smart_Campaign_Targetting_System/
 ├── backend/
-│   ├── main.py
-│   ├── ollama_analyzer.py
-│   ├── test_ollama.py
-│   ├── requirements.txt
+│ ├── main.py
+│ ├── ollama_analyzer.py
+│ ├── test_ollama.py
+│ └── requirements.txt
+│
+├── data/
+│ ├── campaign_customer_mapping.csv
+│ ├── campaign_history.csv
+│ ├── customer_interactions.csv
+│ ├── customer_profiles.csv
+│ ├── issue_trends.csv
+│ ├── product_catalog.csv
+│ └── dataset_summary.json
 │
 └── frontend/
-    ├── public/
-    ├── src/
-    │   ├── App.js
-    │   ├── App.css
-    │   ├── index.js
-    │   ├── index.css
-    ├── package.json
-    └── README.md
+├── public/
+├── src/
+│ ├── App.js
+│ ├── App.css
+│ ├── index.js
+│ ├── index.css
+├── package.json
+└── README.md
 
-⚙️ Backend Setup – FastAPI + Ollama (llama3.2:1b)
-1️⃣ Install Python dependencies
+
+---
+
+## Backend Setup (FastAPI + Ollama)
+
+### 1. Install Python Dependencies
+
+
+
 pip install fastapi uvicorn ollama python-multipart pydantic
 
-2️⃣ Install Ollama
 
-Download: https://ollama.com/download
+### 2. Install Ollama
 
-3️⃣ Pull required LLM
+Download from: https://ollama.com/download
+
+### 3. Pull LLM Model
+
+
+
 ollama pull llama3.2:1b
 
-4️⃣ Start backend server
+
+### 4. Start Backend Server
+
+
+
 cd backend
 python main.py
 
 
-Backend runs at:
+Backend URL:
+
+
 
 http://localhost:8000
 
-🖥️ Frontend Setup – React (Vodafone Red Theme)
-1️⃣ Create React App
+
+---
+
+## Frontend Setup (React + Vodafone Theme)
+
+### 1. Create React App
+
+
+
 npx create-react-app frontend
 cd frontend
 
-2️⃣ Install required libraries
+
+### 2. Install Required Libraries
+
+
+
 npm install lucide-react recharts
 
-3️⃣ Replace required files
-File	Action
-public/index.html	Replace
-src/index.js	Replace
-src/index.css	Replace
-src/App.js	Replace (Vodafone red + dark mode)
-src/App.css	Replace
-package.json	Replace
 
-⚠️ Remove boilerplate files:
+### 3. Replace Files
 
-logo.svg
-App.test.js
-reportWebVitals.js
-setupTests.js
+Replace these files entirely:
 
-4️⃣ Recommended: Add .env
-REACT_APP_API_URL=http://localhost:8000
+- public/index.html
+- src/index.js
+- src/index.css
+- src/App.js
+- src/App.css
+- package.json
+
+Remove:
+
+- App.test.js
+- reportWebVitals.js
+- setupTests.js
+- logo.svg
+
+### 4. Start Frontend
 
 
-Use it inside App.js:
 
-const API_URL = process.env.REACT_APP_API_URL;
-
-5️⃣ Start the frontend
 npm start
 
 
-Frontend runs at:
+Frontend URL:
+
+
 
 http://localhost:3000
 
-🎨 Vodafone Red Theme
 
-All blue UI colors were replaced with the official Vodafone palette:
+---
 
-Name	Hex Code
-Primary Red	#E60000
-Deep Red	#B00000
-Medium Red	#FF4D4D
-Soft Red	#FF9999
-Light Red	#FFCCCC
-Pale Red	#FFE5E5
-Maroon	#990000
+## Dataset (Inside /data Folder)
 
-✔ Gradients updated
-✔ Charts themed
-✔ Stat cards, badges, buttons converted to red
-✔ No blue remains anywhere
+The dataset contains telecom-related CSV files including:
 
-🌙 Dark Mode (Vodafone Theme)
+- customer profiles
+- customer interactions
+- campaign performance
+- issue trends
+- product catalog
+- mapping of campaigns to customers
 
-Dark Mode Colors:
+`dataset_summary.json` contains a textual summary of the dataset.
 
-Purpose	Color
-Background	#1A1A1A
-Card	#242424
-Text	#FFFFFF
-Subtext	#B3B3B3
-Red Accent	#FF3333
+---
 
-Frontend includes a dark mode toggle (Moon/Sun icons).
+## Features
 
-📊 Features
-🔹 Dashboard
+### Dashboard
+- Total interactions
+- Total customers
+- Churn risk distribution
+- Issue category distribution
+- Sentiment analysis
+- Top issues table
 
-Total interactions
+### Leads View
+- Filter customers by issue category
+- High risk customer identification
+- Churn score visualization
+- Customer profile summary
 
-Active customers
+### Campaigns View
+- Campaign performance analytics
+- ROI
+- Conversion funnel
+- Revenue insights
 
-Critical issues
+### Analytics (AI Query Engine)
+- Natural language queries powered by Llama3.2:1b
+- AI-generated summaries, insights, and recommendations
 
-Avg resolution time
+### Topic Modeling
+- AI-detected issue clusters
+- Severity levels
+- Percentage distribution
 
-Charts:
+---
 
-Top issue categories (Bar)
+## API Endpoints
 
-Sentiment analysis (Pie)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /stats | Returns platform statistics |
+| GET | /top-issues | Returns top customer issue categories |
+| GET | /campaigns | Returns campaign analytics |
+| GET | /leads/{category} | Returns customer leads for a specific issue |
+| GET | /topic-modeling | Returns AI topic clusters |
+| POST | /query | Processes natural language queries |
 
-Churn risk distribution (Horizontal bar)
+---
 
-Top issue table
+## Troubleshooting
 
-🔹 Leads View
+### Backend not responding
+Ensure Ollama is running:
 
-Category filter
 
-High-value customer cards
 
-Customer details
+ollama serve
+ollama run llama3.2:1b
 
-Summary + location + operator + tenure
 
-Churn risk score
+### CORS Issues
+Add this inside main.py:
 
-Target button
-
-🔹 Campaigns View
-
-Campaign performance cards
-
-ROI tracking
-
-Funnel metrics (Target → Contact → Response → Conversion)
-
-Revenue insights
-
-Conversion rate details
-
-🔹 Analytics – AI Query Engine (Powered by llama3.2:1b)
-
-Ask natural language questions like:
-
-“Which customers are at high churn risk?”
-
-“Top complaints about network in Delhi?”
-
-“Which segment needs campaign targeting?”
-
-The LLM returns:
-
-AI-generated answer
-
-Summaries
-
-Insights
-
-Recommendations
-
-🔹 Topic Modeling (AI Generated)
-
-AI-discovered customer issue groups
-
-Severity: High, Medium, Low
-
-Issue percentage
-
-Severity badges
-
-Smooth progress bar
-
-🔌 API Endpoints
-Method	Endpoint	Description
-GET	/stats	Overall platform stats
-GET	/top-issues	Top 10 customer issues
-GET	/campaigns	Campaign analytics
-GET	/leads/{category}	Leads by category
-GET	/topic-modeling	AI topic clusters
-POST	/query	AI natural language analytics
-🛠️ Troubleshooting
-❗ CORS Error
-
-Add this to backend:
-
+```python
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
@@ -227,28 +224,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-❗ Model Not Loading
+Frontend cannot fetch data
 
-Ensure Ollama is running:
+Verify:
 
-ollama run llama3.2:1b
+Backend is running on port 8000
 
-❗ Wrong API URL
+Frontend is running on port 3000
 
-Set correct .env:
+API URL is correctly set
 
-REACT_APP_API_URL=http://localhost:8000
-
-❗ Missing libraries
-npm install lucide-react recharts
-
-
-
-🚀 Production Build
+Production Build
 npm run build
 serve -s build
 
-📄 License
+License
 
-This project is part of the TelecomAI Smart Campaign Targeting System,
-developed for Vodafone Intelligent Solutions (VOIS) for analytics, churn prediction, and customer experience optimization.
+This project is part of the Smart Campaign Targetting System for telecom data analytics and churn prediction.
+
+
