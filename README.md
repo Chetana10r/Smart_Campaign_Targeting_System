@@ -1,261 +1,254 @@
-# Smart Campaign Targeting - Frontend Setup Guide
+🔴 TelecomAI – Vodafone Smart Campaign Targeting Platform
 
-## 📁 Project Structure
+AI-Powered Customer Intelligence | Churn Prediction | Lead Targeting | Llama-Powered Analytics
 
-```
-frontend/
-├── public/
-│   ├── index.html
-│   ├── manifest.json
-│   └── favicon.ico
-├── src/
-│   ├── App.js
-│   ├── App.css
-│   ├── index.js
-│   └── index.css
-├── package.json
-└── README.md
-```
+🚀 Overview
 
-## 🚀 Quick Start
+TelecomAI is a fully AI-powered customer intelligence platform designed for telecom operations.
+It helps Vodafone (VOIS) teams identify high-risk customers, optimize campaigns, analyze complaints, and generate insights automatically using Ollama LLM (llama3.2:1b).
 
-### Step 1: Create React App
+This project contains:
 
-```bash
-# Create new React application
-npx create-react-app frontend
+FastAPI Backend
 
-# Navigate to the project directory
-cd frontend
-```
+Ollama LLM Engine (llama3.2:1b)
 
-### Step 2: Install Dependencies
+React Frontend with Vodafone Red Theme + Dark Mode
 
-```bash
-npm install recharts lucide-react
-```
+Recharts Data Visualizations
 
-### Step 3: Copy Files
+📁 Project Structure
+project/
+├── backend/
+│   ├── main.py
+│   ├── ollama_analyzer.py
+│   ├── test_ollama.py
+│   ├── requirements.txt
+│
+└── frontend/
+    ├── public/
+    ├── src/
+    │   ├── App.js
+    │   ├── App.css
+    │   ├── index.js
+    │   ├── index.css
+    ├── package.json
+    └── README.md
 
-Replace the following files with the provided code:
+⚙️ Backend Setup – FastAPI + Ollama (llama3.2:1b)
+1️⃣ Install Python dependencies
+pip install fastapi uvicorn ollama python-multipart pydantic
 
-1. **package.json** - Replace entire file
-2. **public/index.html** - Replace entire file
-3. **src/index.js** - Replace entire file
-4. **src/index.css** - Replace entire file
-5. **src/App.js** - Replace entire file
-6. **src/App.css** - Create new file
+2️⃣ Install Ollama
 
-### Step 4: Start Backend Server
+Download: https://ollama.com/download
 
-Make sure your backend is running:
+3️⃣ Pull required LLM
+ollama pull llama3.2:1b
 
-```bash
+4️⃣ Start backend server
 cd backend
 python main.py
-```
 
-The backend should be running on `http://localhost:8000`
 
-### Step 5: Start Frontend
+Backend runs at:
 
-```bash
-# In the frontend directory
+http://localhost:8000
+
+🖥️ Frontend Setup – React (Vodafone Red Theme)
+1️⃣ Create React App
+npx create-react-app frontend
+cd frontend
+
+2️⃣ Install required libraries
+npm install lucide-react recharts
+
+3️⃣ Replace required files
+File	Action
+public/index.html	Replace
+src/index.js	Replace
+src/index.css	Replace
+src/App.js	Replace (Vodafone red + dark mode)
+src/App.css	Replace
+package.json	Replace
+
+⚠️ Remove boilerplate files:
+
+logo.svg
+App.test.js
+reportWebVitals.js
+setupTests.js
+
+4️⃣ Recommended: Add .env
+REACT_APP_API_URL=http://localhost:8000
+
+
+Use it inside App.js:
+
+const API_URL = process.env.REACT_APP_API_URL;
+
+5️⃣ Start the frontend
 npm start
-```
 
-The application will open at `http://localhost:3000`
 
-## 📋 File Contents
+Frontend runs at:
 
-### 1. package.json
-Copy the provided package.json content
+http://localhost:3000
 
-### 2. public/index.html
-Copy the provided HTML content
+🎨 Vodafone Red Theme
 
-### 3. src/index.js
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+All blue UI colors were replaced with the official Vodafone palette:
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-```
+Name	Hex Code
+Primary Red	#E60000
+Deep Red	#B00000
+Medium Red	#FF4D4D
+Soft Red	#FF9999
+Light Red	#FFCCCC
+Pale Red	#FFE5E5
+Maroon	#990000
 
-### 4. src/index.css
-Copy the provided CSS content with Google Fonts import
+✔ Gradients updated
+✔ Charts themed
+✔ Stat cards, badges, buttons converted to red
+✔ No blue remains anywhere
 
-### 5. src/App.js
-Copy the complete React component code
+🌙 Dark Mode (Vodafone Theme)
 
-### 6. src/App.css
-Copy the complete styling code
+Dark Mode Colors:
 
-## 🎨 Features
+Purpose	Color
+Background	#1A1A1A
+Card	#242424
+Text	#FFFFFF
+Subtext	#B3B3B3
+Red Accent	#FF3333
 
-### Dashboard View
-- **Key Metrics Cards**: Total Interactions, Active Customers, Critical Issues, Avg Resolution Time
-- **Charts**: 
-  - Bar chart for top issue categories
-  - Pie chart for sentiment analysis
-  - Horizontal bar chart for churn risk distribution
-- **Issues Table**: Detailed breakdown of customer issues
+Frontend includes a dark mode toggle (Moon/Sun icons).
 
-### Leads View
-- **Category Filter**: Select different issue categories
-- **Lead Cards**: Display high-risk customers with:
-  - Customer details and contact info
-  - Issue summaries
-  - Churn risk scores
-  - Action buttons
+📊 Features
+🔹 Dashboard
 
-### Campaigns View
-- **Campaign Performance Cards**: 
-  - ROI calculations
-  - Funnel metrics (Targeted → Contacted → Responded → Converted)
-  - Revenue generated
-  - Conversion rates
+Total interactions
 
-### Analytics View
-- **AI Query Engine**: Natural language questions about data
-- **Results Display**: 
-  - Direct answers
-  - Key insights
-  - Actionable recommendations
-- **Topic Modeling**: AI-discovered customer issue patterns
+Active customers
 
-## 🛠️ Troubleshooting
+Critical issues
 
-### CORS Issues
-If you get CORS errors, ensure your backend has CORS middleware enabled:
+Avg resolution time
 
-```python
-# In main.py
+Charts:
+
+Top issue categories (Bar)
+
+Sentiment analysis (Pie)
+
+Churn risk distribution (Horizontal bar)
+
+Top issue table
+
+🔹 Leads View
+
+Category filter
+
+High-value customer cards
+
+Customer details
+
+Summary + location + operator + tenure
+
+Churn risk score
+
+Target button
+
+🔹 Campaigns View
+
+Campaign performance cards
+
+ROI tracking
+
+Funnel metrics (Target → Contact → Response → Conversion)
+
+Revenue insights
+
+Conversion rate details
+
+🔹 Analytics – AI Query Engine (Powered by llama3.2:1b)
+
+Ask natural language questions like:
+
+“Which customers are at high churn risk?”
+
+“Top complaints about network in Delhi?”
+
+“Which segment needs campaign targeting?”
+
+The LLM returns:
+
+AI-generated answer
+
+Summaries
+
+Insights
+
+Recommendations
+
+🔹 Topic Modeling (AI Generated)
+
+AI-discovered customer issue groups
+
+Severity: High, Medium, Low
+
+Issue percentage
+
+Severity badges
+
+Smooth progress bar
+
+🔌 API Endpoints
+Method	Endpoint	Description
+GET	/stats	Overall platform stats
+GET	/top-issues	Top 10 customer issues
+GET	/campaigns	Campaign analytics
+GET	/leads/{category}	Leads by category
+GET	/topic-modeling	AI topic clusters
+POST	/query	AI natural language analytics
+🛠️ Troubleshooting
+❗ CORS Error
+
+Add this to backend:
+
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-```
 
-### API Connection Issues
-- Verify backend is running on port 8000
-- Check `API_URL` in App.js matches your backend URL
-- Ensure all backend endpoints are accessible
+❗ Model Not Loading
 
-### Missing Dependencies
-If you see module not found errors:
+Ensure Ollama is running:
 
-```bash
-npm install recharts lucide-react
-```
+ollama run llama3.2:1b
 
-### Port Already in Use
-If port 3000 is busy:
+❗ Wrong API URL
 
-```bash
-# The prompt will ask if you want to use another port
-# Or manually specify port:
-PORT=3001 npm start
-```
+Set correct .env:
 
-## 🎯 API Endpoints Used
+REACT_APP_API_URL=http://localhost:8000
 
-The frontend connects to these backend endpoints:
+❗ Missing libraries
+npm install lucide-react recharts
 
-- `GET /stats` - Overall statistics
-- `GET /top-issues` - Top customer issues
-- `GET /campaigns` - Campaign performance data
-- `GET /leads/{category}` - High-value leads by category
-- `POST /query` - Natural language queries
-- `GET /topic-modeling` - AI-discovered topics
 
-## 📱 Responsive Design
 
-The application is fully responsive and works on:
-- Desktop (1280px+)
-- Tablet (768px - 1279px)
-- Mobile (< 768px)
-
-## 🎨 Color Palette
-
-- **Primary Blue**: #3b82f6
-- **Purple**: #8b5cf6
-- **Pink**: #ec4899
-- **Orange**: #f59e0b
-- **Green**: #10b981
-- **Cyan**: #06b6d4
-- **Red**: #ef4444
-
-## 🔧 Customization
-
-### Change API URL
-Edit `API_URL` constant in `src/App.js`:
-
-```javascript
-const API_URL = 'http://your-backend-url:8000';
-```
-
-### Modify Colors
-Edit color variables in `src/App.css` or update the `COLORS` array in `src/App.js`
-
-### Add New Tabs
-1. Add new tab name to the tabs array in navigation
-2. Create new view function component
-3. Add conditional render in main content area
-
-## 📊 Data Flow
-
-1. **Component Mount**: Fetches initial data (stats, issues, campaigns, topics)
-2. **Tab Switch**: Renders different views based on active tab
-3. **User Interactions**: 
-   - Select category → Fetch leads
-   - Enter query → Call AI analysis
-   - View campaigns → Display performance metrics
-
-## 🚀 Production Build
-
-To create a production build:
-
-```bash
+🚀 Production Build
 npm run build
-```
-
-This creates an optimized build in the `build/` folder.
-
-To serve the production build:
-
-```bash
-npm install -g serve
 serve -s build
-```
 
-## 📝 Notes
+📄 License
 
-- Ensure backend is running before starting frontend
-- All API calls are asynchronous with error handling
-- Loading states are displayed during data fetching
-- Charts are rendered using Recharts library
-- Icons are from Lucide React library
-
-## 🆘 Support
-
-If you encounter issues:
-
-1. Check browser console for errors
-2. Verify backend is accessible
-3. Ensure all dependencies are installed
-4. Check API endpoint responses in Network tab
-
-## 📄 License
-
-This project is part of the Smart Campaign Targeting system for telecom customer intelligence.
+This project is part of the TelecomAI Smart Campaign Targeting System,
+developed for Vodafone Intelligent Solutions (VOIS) for analytics, churn prediction, and customer experience optimization.
