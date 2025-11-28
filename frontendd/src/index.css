@@ -13,7 +13,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to bottom right, #f9fafb, #eff6ff);
+
+  /* 🔴 Updated for Vodafone Theme */
+  background: linear-gradient(to bottom right, #f9fafb, #ffe5e5);
 }
 
 code {

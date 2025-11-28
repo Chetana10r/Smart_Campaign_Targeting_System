@@ -1,11 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Search, TrendingUp, Users, AlertCircle, Phone, Mail, MapPin, Calendar, ChevronRight, BarChart3, Filter, Download, RefreshCw, MessageSquare, Zap, Target } from 'lucide-react';
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  Search,
+  TrendingUp,
+  Users,
+  AlertCircle,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  ChevronRight,
+  BarChart3,
+  Filter,
+  Download,
+  RefreshCw,
+  MessageSquare,
+  Zap,
+  Target,
+  Moon,
+  Sun
+} from 'lucide-react';
 import './App.css';
 
 const API_URL = 'http://localhost:8000';
 
-const COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#ef4444'];
+// Vodafone red palette for charts
+const COLORS = ['#E60000', '#B00000', '#FF4D4D', '#FF9999', '#FFCCCC', '#FFE5E5', '#990000'];
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -18,6 +52,16 @@ const App = () => {
   const [queryResult, setQueryResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [topics, setTopics] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const isDark = darkMode;
+
+  const cardStyle = isDark
+    ? { background: '#020617', borderColor: '#1f2937', color: '#e5e7eb' }
+    : {};
+  const subCardStyle = isDark
+    ? { background: '#111827', borderColor: '#1f2937', color: '#e5e7eb' }
+    : {};
 
   useEffect(() => {
     fetchStats();
@@ -106,7 +150,7 @@ const App = () => {
   };
 
   const StatCard = ({ title, value, icon: Icon, trend, color }) => (
-    <div className="stat-card" style={{ borderColor: color }}>
+    <div className="stat-card" style={{ borderColor: color, ...(isDark ? subCardStyle : {}) }}>
       <div className="stat-card-content">
         <div>
           <p className="stat-title">{title}</p>
@@ -150,7 +194,10 @@ const App = () => {
     return (
       <div className="view-container">
         {/* Header */}
-        <div className="header-banner">
+        <div
+          className="header-banner"
+          style={isDark ? { boxShadow: '0 10px 15px -3px rgba(0,0,0,0.7)' } : {}}
+        >
           <h1 className="header-title">Smart Campaign Targeting</h1>
           <p className="header-subtitle">AI-Powered Telecom Customer Intelligence Platform</p>
         </div>
@@ -162,14 +209,14 @@ const App = () => {
             value={stats.total_interactions.toLocaleString()}
             icon={MessageSquare}
             trend="+12% this month"
-            color="#3b82f6"
+            color="#E60000"
           />
           <StatCard
             title="Active Customers"
             value={stats.total_customers.toLocaleString()}
             icon={Users}
             trend="3K+ unique users"
-            color="#8b5cf6"
+            color="#B00000"
           />
           <StatCard
             title="Critical Issues"
@@ -190,9 +237,9 @@ const App = () => {
         {/* Charts Row */}
         <div className="charts-grid">
           {/* Category Distribution */}
-          <div className="card">
+          <div className="card" style={cardStyle}>
             <h3 className="card-title">
-              <BarChart3 className="icon-md text-blue" />
+              <BarChart3 className="icon-md text-red" />
               Top Issue Categories
             </h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -201,15 +248,15 @@ const App = () => {
                 <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} fontSize={12} />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="value" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+                <Bar dataKey="value" fill="#E60000" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
           {/* Sentiment Distribution */}
-          <div className="card">
+          <div className="card" style={cardStyle}>
             <h3 className="card-title">
-              <Target className="icon-md text-purple" />
+              <Target className="icon-md text-red" />
               Sentiment Analysis
             </h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -221,7 +268,7 @@ const App = () => {
                   labelLine={false}
                   label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                   outerRadius={100}
-                  fill="#8884d8"
+                  fill="#E60000"
                   dataKey="value"
                 >
                   {sentimentData.map((entry, index) => (
@@ -235,7 +282,7 @@ const App = () => {
         </div>
 
         {/* Churn Risk Distribution */}
-        <div className="card">
+        <div className="card" style={cardStyle}>
           <h3 className="card-title">
             <AlertCircle className="icon-md text-red" />
             Churn Risk Distribution
@@ -246,13 +293,13 @@ const App = () => {
               <XAxis type="number" />
               <YAxis dataKey="name" type="category" />
               <Tooltip />
-              <Bar dataKey="value" fill="#ec4899" radius={[0, 8, 8, 0]} />
+              <Bar dataKey="value" fill="#B00000" radius={[0, 8, 8, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
         {/* Top Issues Table */}
-        <div className="card">
+        <div className="card" style={cardStyle}>
           <h3 className="card-title">Top Customer Issues</h3>
           <div className="table-container">
             <table className="data-table">
@@ -281,7 +328,7 @@ const App = () => {
                     </td>
                     <td>
                       <span className={`font-semibold ${
-                        issue.avg_churn_score > 0.7 ? 'text-red' : 
+                        issue.avg_churn_score > 0.7 ? 'text-red' :
                         issue.avg_churn_score > 0.5 ? 'text-orange' : 'text-green'
                       }`}>
                         {issue.avg_churn_score}
@@ -304,10 +351,10 @@ const App = () => {
 
   const LeadsView = () => (
     <div className="view-container">
-      <div className="card">
+      <div className="card" style={cardStyle}>
         <div className="card-header">
           <h2 className="card-title-large">
-            <Target className="icon-lg text-blue" />
+            <Target className="icon-lg text-red" />
             High-Value Lead Generation
           </h2>
           <div className="button-group">
@@ -331,7 +378,11 @@ const App = () => {
 
         <div className="leads-grid">
           {leads.map((lead, idx) => (
-            <div key={idx} className="lead-card">
+            <div
+              key={idx}
+              className="lead-card"
+              style={subCardStyle}
+            >
               <div className="lead-content">
                 <div className="lead-info">
                   <div className="lead-header">
@@ -345,9 +396,9 @@ const App = () => {
                     </span>
                     <span className="lead-id">{lead.customer_id}</span>
                   </div>
-                  
+
                   <p className="lead-summary">{lead.issue_summary}</p>
-                  
+
                   <div className="lead-details">
                     <span className="detail-item">
                       <MapPin className="icon-sm" />
@@ -366,7 +417,7 @@ const App = () => {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="lead-action">
                   <div className="churn-score">
                     {(lead.churn_score * 100).toFixed(0)}%
@@ -386,15 +437,19 @@ const App = () => {
 
   const CampaignsView = () => (
     <div className="view-container">
-      <div className="card">
+      <div className="card" style={cardStyle}>
         <h2 className="card-title-large">
-          <Zap className="icon-lg text-purple" />
+          <Zap className="icon-lg text-red" />
           Campaign Performance
         </h2>
-        
+
         <div className="campaigns-grid">
           {campaigns.map((campaign, idx) => (
-            <div key={idx} className="campaign-card">
+            <div
+              key={idx}
+              className="campaign-card"
+              style={subCardStyle}
+            >
               <div className="campaign-header">
                 <div>
                   <h3 className="campaign-name">{campaign.campaign_name}</h3>
@@ -460,12 +515,12 @@ const App = () => {
 
   const AnalyticsView = () => (
     <div className="view-container">
-      <div className="card">
+      <div className="card" style={cardStyle}>
         <h2 className="card-title-large">
-          <Search className="icon-lg text-blue" />
+          <Search className="icon-lg text-red" />
           AI-Powered Query Engine
         </h2>
-        
+
         <div className="query-section">
           <div className="query-input-group">
             <input
@@ -485,10 +540,16 @@ const App = () => {
               Analyze
             </button>
           </div>
-          
+
           {/* Sample Questions */}
-          <div style={{ marginTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>Try:</span>
+          <div style={{
+            marginTop: '1rem',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '0.5rem',
+            alignItems: 'center'
+          }}>
+            <span style={{ fontSize: '0.875rem', color: isDark ? '#9ca3af' : '#6b7280' }}>Try:</span>
             {[
               'Which customers are at high churn risk?',
               'What are the top complaint categories?',
@@ -500,15 +561,15 @@ const App = () => {
                 style={{
                   fontSize: '0.875rem',
                   padding: '0.25rem 0.75rem',
-                  background: '#f3f4f6',
-                  color: '#374151',
+                  background: isDark ? '#1f2937' : '#f3f4f6',
+                  color: isDark ? '#e5e7eb' : '#374151',
                   borderRadius: '9999px',
                   border: 'none',
                   cursor: 'pointer',
                   transition: 'background 0.2s'
                 }}
-                onMouseEnter={(e) => e.target.style.background = '#e5e7eb'}
-                onMouseLeave={(e) => e.target.style.background = '#f3f4f6'}
+                onMouseEnter={(e) => e.target.style.background = isDark ? '#374151' : '#e5e7eb'}
+                onMouseLeave={(e) => e.target.style.background = isDark ? '#1f2937' : '#f3f4f6'}
               >
                 {q}
               </button>
@@ -519,18 +580,24 @@ const App = () => {
         {/* Conversational AI Response */}
         {queryResult && queryResult.conversational && (
           <div style={{
-            background: 'white',
+            background: isDark ? '#020617' : 'white',
             borderRadius: '1rem',
             padding: '2rem',
             marginTop: '1.5rem',
             boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-            animation: 'fadeIn 0.5s ease-out'
+            animation: 'fadeIn 0.5s ease-out',
+            color: isDark ? '#e5e7eb' : '#374151'
           }}>
-            <div style={{ display: 'flex', alignItems: 'start', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'start',
+              gap: '1rem',
+              marginBottom: '1.5rem'
+            }}>
               <div style={{
                 width: '2.5rem',
                 height: '2.5rem',
-                background: 'linear-gradient(to bottom right, #3b82f6, #8b5cf6)',
+                background: 'linear-gradient(to bottom right, #E60000, #B00000)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -540,72 +607,104 @@ const App = () => {
                 <Zap style={{ width: '1.25rem', height: '1.25rem', color: 'white' }} />
               </div>
               <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.25rem' }}>
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 600,
+                  color: isDark ? '#f9fafb' : '#111827',
+                  marginBottom: '0.25rem'
+                }}>
                   AI Analysis
                 </h3>
-                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>
+                <p style={{ fontSize: '0.875rem', color: isDark ? '#9ca3af' : '#6b7280' }}>
                   Generated insights from your customer data
                 </p>
               </div>
             </div>
 
             {/* Render Conversational Response */}
-            <div style={{ lineHeight: '1.75', color: '#374151' }}>
+            <div style={{ lineHeight: '1.75', color: isDark ? '#e5e7eb' : '#374151' }}>
               {queryResult.answer.split('\n\n').map((paragraph, idx) => {
-                // Check if it's a header (starts with **)
+                // Header starting with **...:**
                 if (paragraph.startsWith('**') && paragraph.includes(':**')) {
                   return (
-                    <h3 key={idx} style={{
-                      fontSize: '1.125rem',
-                      fontWeight: 600,
-                      color: '#111827',
-                      marginTop: '1.5rem',
-                      marginBottom: '0.75rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem'
-                    }}>
-                      <TrendingUp style={{ width: '1.25rem', height: '1.25rem', color: '#3b82f6' }} />
+                    <h3
+                      key={idx}
+                      style={{
+                        fontSize: '1.125rem',
+                        fontWeight: 600,
+                        color: isDark ? '#f9fafb' : '#111827',
+                        marginTop: '1.5rem',
+                        marginBottom: '0.75rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      <TrendingUp
+                        style={{
+                          width: '1.25rem',
+                          height: '1.25rem',
+                          color: '#E60000'
+                        }}
+                      />
                       {paragraph.replace(/\*\*/g, '').replace(':', '')}
                     </h3>
                   );
                 }
-                
-                // Check if it's a numbered recommendation
+
+                // Numbered recommendation
                 if (/^\d+\./.test(paragraph)) {
                   const [number, ...rest] = paragraph.split('.');
                   const content = rest.join('.').trim();
                   const [title, ...description] = content.split(':');
-                  
+
                   return (
-                    <div key={idx} style={{
-                      background: 'linear-gradient(to right, #eff6ff, #f3e8ff)',
-                      borderLeft: '4px solid #3b82f6',
-                      padding: '1rem',
-                      marginTop: '1rem',
-                      marginBottom: '1rem',
-                      borderRadius: '0 0.5rem 0.5rem 0'
-                    }}>
+                    <div
+                      key={idx}
+                      style={{
+                        background: 'linear-gradient(to right, #ffe5e5, #ffcccc)',
+                        borderLeft: '4px solid #E60000',
+                        padding: '1rem',
+                        marginTop: '1rem',
+                        marginBottom: '1rem',
+                        borderRadius: '0 0.5rem 0.5rem 0'
+                      }}
+                    >
                       <div style={{ display: 'flex', alignItems: 'start', gap: '0.75rem' }}>
-                        <div style={{
-                          width: '2rem',
-                          height: '2rem',
-                          background: '#3b82f6',
-                          color: 'white',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontWeight: 700,
-                          flexShrink: 0
-                        }}>
+                        <div
+                          style={{
+                            width: '2rem',
+                            height: '2rem',
+                            background: '#E60000',
+                            color: 'white',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: 700,
+                            flexShrink: 0
+                          }}
+                        >
                           {number}
                         </div>
                         <div>
-                          <h4 style={{ fontWeight: 600, color: '#111827', marginBottom: '0.25rem' }}>
+                          <h4
+                            style={{
+                              fontWeight: 600,
+                              color: '#111827',
+                              marginBottom: '0.25rem'
+                            }}
+                          >
                             {title.replace(/\*\*/g, '')}
                           </h4>
-                          <p style={{ color: '#374151', fontSize: '0.875rem', lineHeight: '1.5', margin: 0 }}>
+                          <p
+                            style={{
+                              color: '#374151',
+                              fontSize: '0.875rem',
+                              lineHeight: '1.5',
+                              margin: 0
+                            }}
+                          >
                             {description.join(':').trim()}
                           </p>
                         </div>
@@ -613,12 +712,30 @@ const App = () => {
                     </div>
                   );
                 }
-                
-                // Regular paragraph - handle bold text
+
+                // Regular paragraph
                 return (
-                  <p key={idx} style={{ marginBottom: '1rem', lineHeight: '1.75' }}>
-                    {paragraph.split('**').map((part, i) => 
-                      i % 2 === 0 ? part : <strong key={i} style={{ color: '#111827', fontWeight: 600 }}>{part}</strong>
+                  <p
+                    key={idx}
+                    style={{
+                      marginBottom: '1rem',
+                      lineHeight: '1.75'
+                    }}
+                  >
+                    {paragraph.split('**').map((part, i) =>
+                      i % 2 === 0 ? (
+                        part
+                      ) : (
+                        <strong
+                          key={i}
+                          style={{
+                            color: isDark ? '#f9fafb' : '#111827',
+                            fontWeight: 600
+                          }}
+                        >
+                          {part}
+                        </strong>
+                      )
                     )}
                   </p>
                 );
@@ -631,9 +748,13 @@ const App = () => {
                 <Download className="icon-sm" />
                 Export Analysis
               </button>
-              <button 
-                className="btn" 
-                style={{ flex: 1, background: '#f3f4f6', color: '#374151' }}
+              <button
+                className="btn"
+                style={{
+                  flex: 1,
+                  background: isDark ? '#1f2937' : '#f3f4f6',
+                  color: isDark ? '#e5e7eb' : '#374151'
+                }}
                 onClick={() => setQuery('')}
               >
                 Ask Another Question
@@ -683,7 +804,7 @@ const App = () => {
         {/* Empty State */}
         {!queryResult && !loading && (
           <div style={{
-            background: 'white',
+            background: isDark ? '#020617' : 'white',
             borderRadius: '1rem',
             padding: '3rem',
             textAlign: 'center',
@@ -693,19 +814,24 @@ const App = () => {
             <div style={{
               width: '4rem',
               height: '4rem',
-              background: '#eff6ff',
+              background: '#ffe5e5',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               margin: '0 auto 1rem'
             }}>
-              <AlertCircle style={{ width: '2rem', height: '2rem', color: '#3b82f6' }} />
+              <AlertCircle style={{ width: '2rem', height: '2rem', color: '#E60000' }} />
             </div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 600,
+              color: isDark ? '#f9fafb' : '#111827',
+              marginBottom: '0.5rem'
+            }}>
               Ready to analyze your data
             </h3>
-            <p style={{ color: '#6b7280' }}>
+            <p style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
               Ask a question about your customers, campaigns, or churn risk to get started
             </p>
           </div>
@@ -714,11 +840,15 @@ const App = () => {
 
       {/* Topic Modeling */}
       {topics.length > 0 && (
-        <div className="card">
+        <div className="card" style={cardStyle}>
           <h2 className="card-title-large">AI-Discovered Topics</h2>
           <div className="topics-grid">
             {topics.map((topic, idx) => (
-              <div key={idx} className="topic-card">
+              <div
+                key={idx}
+                className="topic-card"
+                style={subCardStyle}
+              >
                 <div className="topic-header">
                   <h4 className="topic-title">{topic.topic}</h4>
                   <span className={`badge ${
@@ -749,30 +879,57 @@ const App = () => {
   );
 
   return (
-    <div className="app">
+    <div
+      className="app"
+      style={isDark ? { background: '#020617', color: '#e5e7eb' } : {}}
+    >
       {/* Navigation */}
-      <nav className="navbar">
+      <nav
+        className="navbar"
+        style={isDark ? { background: '#020617', borderBottom: '1px solid #1f2937' } : {}}
+      >
         <div className="nav-container">
           <div className="nav-brand">
             <div className="brand-icon">
               <Zap className="icon-md brand-icon-svg" />
             </div>
             <div>
-              <h1 className="brand-title">TelecomAI</h1>
-              <p className="brand-subtitle">Campaign Intelligence Platform</p>
+              <h1 className="brand-title" style={isDark ? { color: '#f9fafb' } : {}}>
+                TelecomAI
+              </h1>
+              <p className="brand-subtitle">
+                Campaign Intelligence Platform
+              </p>
             </div>
           </div>
-          
-          <div className="nav-tabs">
-            {['dashboard', 'leads', 'campaigns', 'analytics'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`nav-tab ${activeTab === tab ? 'nav-tab-active' : ''}`}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div className="nav-tabs">
+              {['dashboard', 'leads', 'campaigns', 'analytics'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`nav-tab ${activeTab === tab ? 'nav-tab-active' : ''}`}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            {/* Dark Mode Toggle */}
+            <button
+              className="btn"
+              onClick={() => setDarkMode(!darkMode)}
+              style={{
+                background: isDark ? '#111827' : '#f3f4f6',
+                color: isDark ? '#e5e7eb' : '#111827',
+                borderRadius: '9999px',
+                paddingInline: '0.75rem'
+              }}
+            >
+              {isDark ? <Sun className="icon-sm" /> : <Moon className="icon-sm" />}
+              <span style={{ fontSize: '0.875rem' }}>{isDark ? 'Light' : 'Dark'}</span>
+            </button>
           </div>
         </div>
       </nav>
@@ -786,7 +943,10 @@ const App = () => {
       </main>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer
+        className="footer"
+        style={isDark ? { background: '#020617', borderTop: '1px solid #1f2937' } : {}}
+      >
         <div className="footer-content">
           <p>© 2025 TelecomAI - Smart Campaign Targeting Platform | Powered by AI & Data Analytics</p>
         </div>
